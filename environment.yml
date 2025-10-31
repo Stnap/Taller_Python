@@ -1,0 +1,26 @@
+name: Taller_Python
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - jupyterlab=4.4.6
+  - pip=25.2
+  - python=3.12.11
+  - pip:
+      - coloredlogs==15.0.1
+      - humanize==4.13.0
+      - matplotlib==3.10.6
+      - mpld3==0.5.11
+      - notebook==7.4.5
+      - numpy==2.3.2
+      - pandas==2.3.2
+      - prettytable==3.16.0
+      - prophet==1.1.7
+      - ruff==0.12.11
+      - scikit-learn==1.7.1
+      - scipy==1.16.1
+      - seaborn==0.13.2
+      - streamlit==1.49.1
+      - tqdm==4.67.1
+      - typeguard==4.4.4
+      - ydata-profiling==4.16.1
