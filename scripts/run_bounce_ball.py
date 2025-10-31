@@ -23,6 +23,8 @@ class BallConfig:
     size: float = 1
     speed_x: int = 3
     speed_y: int = 3
+    speed_increment: float = 0.2
+    speed_limit: float = 50
 
 
 class Screen:
@@ -63,6 +65,7 @@ class Ball:
         self.vx = ball_config.speed_x
         self.vy = ball_config.speed_y
         self._random_position()
+        self.turtle.pendown()
     
     def _create_ball(self):
         """Crea la pelota"""
@@ -86,7 +89,7 @@ class Ball:
         self.turtle.goto(new_x, new_y)
     
     def check_collision(self):
-        """Verifica y maneja colisiones con los bordes"""
+        """Maneja colisiones con los bordes y aumenta la velocidad"""
         x = self.turtle.xcor()
         y = self.turtle.ycor()
         
@@ -94,9 +97,17 @@ class Ball:
         
         if x + ball_radius >= self.x_limit or x - ball_radius <= -self.x_limit:
             self.vx = -self.vx
+            if self.vx > 0:
+                self.vx = min(self.vx + self.config.speed_increment, self.config.speed_limit)
+            else:
+                self.vx = max(self.vx - self.config.speed_increment, -self.config.speed_limit)
         
         if y + ball_radius >= self.y_limit or y - ball_radius <= -self.y_limit:
             self.vy = -self.vy
+            if self.vy > 0:
+                self.vy = min(self.vy + self.config.speed_increment, self.config.speed_limit)
+            else:
+                self.vy = max(self.vy - self.config.speed_increment, -self.config.speed_limit)
 
 
 class BounceGame:
